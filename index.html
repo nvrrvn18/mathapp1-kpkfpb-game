@@ -1,546 +1,122 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#16365f" />
-  <meta name="description" content="Aplikasi pembelajaran interaktif Matematika Kelas VII tentang KPK dan FPB." />
-  <title>Matematika Kelas VII | KPK dan FPB</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f8ff" />
+  <meta name="description" content="Aplikasi pembelajaran interaktif Berpikir Komputasional untuk SMP/MTs Kelas VII." />
+  <title>Berpikir Komputasional Kelas VII</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/animation.css" />
-  <link rel="stylesheet" href="css/factor-exploration.css" />
-  <link rel="stylesheet" href="css/game.css" />
   <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/animation.css" />
 </head>
 <body>
-  <a class="skip-link" href="#mainContent">Lewati ke materi</a>
-
-  <header class="topbar" id="topbar">
-    <a href="#landing" class="brand" data-nav="landing" aria-label="Kembali ke beranda">
-      <span class="brand-icon" aria-hidden="true">📘</span>
-      <span><strong>MATEMATIKA KELAS VII</strong><small>KPK dan FPB</small></span>
-    </a>
-
-    <div class="top-progress" aria-label="Progress pembelajaran">
-      <div class="stepper" id="topStepper"></div>
-      <div class="progress-track" aria-hidden="true"><span id="topProgressFill"></span></div>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">🧠</span>
+      <div>
+        <strong>Informatika</strong>
+        <small>Berpikir Komputasional</small>
+      </div>
     </div>
-
-    <div class="top-actions">
-      <strong id="progressPercent">0%</strong>
-      <button class="icon-btn" id="soundToggle" type="button" title="Aktif/nonaktifkan suara" aria-label="Aktif/nonaktifkan suara">🔊</button>
-      <button class="icon-btn" id="fullscreenBtn" type="button" title="Layar penuh" aria-label="Layar penuh">⛶</button>
+    <div class="top-progress" aria-label="Progress belajar">
+      <div class="progress-track"><div id="topProgressBar" class="progress-fill"></div></div>
+      <span id="topProgressText">0%</span>
     </div>
+    <button id="fullscreenBtn" class="icon-btn" aria-label="Layar penuh">⛶</button>
   </header>
 
-  <main id="mainContent" tabindex="-1">
-    <section class="screen landing active" id="landing" data-screen="landing">
-      <div class="floating-symbol s1">×</div><div class="floating-symbol s2">÷</div><div class="floating-symbol s3">12</div>
-      <div class="hero container">
-        <div class="hero-copy fade-up">
-          <span class="eyebrow">Petualangan Matematika</span>
-          <h1>Misi Kota Bilangan<br><span>Kuasai Faktor, KPK, dan FPB melalui petualangan</span></h1>
-          <p>Bantu Nara menyelesaikan masalah di setiap wilayah. Setiap misi hanya bisa dituntaskan dengan menemukan konsep matematikanya.</p>
-          <div class="hero-actions">
-            <button class="btn primary large" id="startBtn" type="button">Mulai Petualangan <span>→</span></button>
-            <button class="btn ghost" id="resumeBtn" type="button">Lanjutkan Misi</button>
-          </div>
-          <div class="mini-stat"><span>💾</span><div><strong>Progress dan koleksi tersimpan otomatis</strong><small>Kamu bisa melanjutkan petualangan kapan saja di perangkat ini.</small></div></div>
+  <main id="app">
+    <section id="home" class="screen active">
+      <div class="hero-card">
+        <div class="hero-copy">
+          <span class="eyebrow">SMP/MTs Kelas VII</span>
+          <h1>Misi Pemecah Masalah</h1>
+          <p>Selesaikan misi, buka empat skill berpikir komputasional, dan hadapi Final Level.</p>
+          <button id="startBtn" class="primary-btn">Mulai Belajar</button>
         </div>
-
-        <div class="hero-visual fade-up delay-1" aria-label="Ilustrasi siswa belajar matematika">
-          <div class="student-scene">
-            <div class="math-card mc1">KPK = 12</div><div class="math-card mc2">FPB = 6</div>
-            <div class="student student-a"><span class="head">🙂</span><span class="body">👕</span></div>
-            <div class="student student-b"><span class="head">😊</span><span class="body">🧥</span></div>
-            <div class="desk">📚 ✏️</div>
-            <div class="board"><strong>4, 8, 12...</strong><span>6, 12, 18...</span></div>
-          </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="float-card">🧩 Pecah</div>
+          <div class="float-card">🔍 Pola</div>
+          <div class="float-card">🎯 Pilih</div>
+          <div class="float-card">🧭 Susun</div>
         </div>
       </div>
 
-      <div class="container game-command-center">
-        <article class="game-guide-card fade-up delay-1">
-          <div class="game-guide-avatar" aria-hidden="true">🧭</div>
-          <div><span class="eyebrow">Pemandu Misi</span><h2>Nara</h2><p>“Kota Bilangan punya lima wilayah. Temukan pola, susun faktor, dan pilih strategi yang tepat untuk membuka semua wilayah.”</p></div>
-        </article>
-
-        <section class="game-map-card fade-up delay-2" aria-labelledby="gameMapTitle">
-          <div class="section-heading compact"><div><span class="eyebrow">Peta Petualangan</span><h2 id="gameMapTitle">Pilih wilayah yang sudah terbuka</h2></div><span class="game-map-legend">★ = penguasaan</span></div>
-          <div class="game-map" id="gameMap"></div>
-        </section>
-
-        <section class="game-collection-card fade-up delay-3" id="gameCollectionCard" aria-labelledby="collectionTitle">
-          <div class="section-heading compact"><div><span class="eyebrow">Koleksi Penemuan</span><h2 id="collectionTitle">Konsep yang sudah kamu temukan</h2></div><strong class="collection-count" id="collectionCount">0/9</strong></div>
-          <p class="collection-help">Koleksi terbuka saat kamu menemukan konsep melalui eksplorasi, bukan hanya karena menekan tombol berikutnya.</p>
-          <div class="game-collection" id="gameCollection"></div>
-        </section>
-      </div>
-
-      <div class="container dashboard-card">
-        <div class="section-heading compact"><div><span class="eyebrow">Catatan Perjalanan</span><h2>Progress setiap wilayah</h2></div><button class="text-btn danger" id="resetProgressBtn" type="button">Reset progress</button></div>
-        <div class="dashboard-progress" id="dashboardProgress"></div>
-      </div>
-    </section>
-
-    <section class="screen" id="factorIntro" data-screen="factorIntro">
-      <div class="container lesson-wrap">
-        <div class="module-banner factor-intro-banner">
-          <div><span class="eyebrow light">MISI 1 · BENGKEL FAKTOR</span><h1>Eksplorasi Faktor Bilangan</h1><p>Kenali faktor melalui susunan kotak sebelum mulai belajar KPK.</p></div>
-          <div class="banner-icon">▦</div>
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Perjalanan Belajar</span>
+            <h2>Peta Misi</h2>
+          </div>
         </div>
-
-        <article class="learning-card goal-card reveal">
-          <div class="card-icon">🔎</div><div><h2>Tujuan Eksplorasi</h2><p>Setelah menyelesaikan materi awal ini, kamu dapat:</p>
-          <ul class="check-list"><li>Memahami arti faktor suatu bilangan</li><li>Menemukan faktor melalui susunan baris dan kolom</li><li>Mengenali pasangan faktor dengan orientasi berbeda</li><li>Membedakan bilangan komposit dan bilangan prima</li></ul></div>
-        </article>
-
-        <article class="learning-card reveal factor-exploration-card" id="factorExplorationCard">
-          <div class="section-heading">
-            <div><span class="eyebrow">MATERI AWAL</span><h2>Mengenal Faktor Bilangan dengan Susunan Kotak</h2></div>
-            <span class="pill">Pictorial</span>
-          </div>
-
-          <div class="factor-explore-progress" aria-label="Tahapan eksplorasi faktor">
-            <span class="active" data-factor-step-dot="0">1</span>
-            <span data-factor-step-dot="1">2</span>
-            <span data-factor-step-dot="2">3</span>
-            <span data-factor-step-dot="3">4</span>
-          </div>
-
-          <section class="factor-explore-step active" data-factor-step="0">
-            <div class="factor-definition-box">
-              <div class="factor-definition-icon">▦</div>
-              <div>
-                <h3>Apa itu faktor?</h3>
-                <p><strong>Faktor</strong> adalah bilangan yang dapat membagi habis suatu bilangan tanpa sisa.</p>
-                <p>Kita dapat melihat faktor melalui susunan kotak. Jika semua kotak dapat disusun menjadi baris dan kolom tanpa ada yang tersisa, banyak baris dan kolom itu menunjukkan faktor.</p>
-              </div>
-            </div>
-            <div class="factor-mini-demo" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span><span></span>
-            </div>
-            <p class="center-note">Coba lihat bagaimana jumlah kotak yang sama dapat disusun dengan bentuk yang berbeda.</p>
-          </section>
-
-          <section class="factor-explore-step" data-factor-step="1">
-            <div class="factor-example-heading">
-              <span class="factor-number-badge">4</span>
-              <div><h3>Contoh: Faktor dari 4</h3><p>Pilih salah satu susunan kotak.</p></div>
-            </div>
-            <div class="factor-arrangement-controls" id="factorFourChoices">
-              <button class="factor-arrangement-btn active" type="button" data-factor-number="4" data-rows="1" data-cols="4" data-factor-label="1 × 4">1 × 4</button>
-              <button class="factor-arrangement-btn" type="button" data-factor-number="4" data-rows="2" data-cols="2" data-factor-label="2 × 2">2 × 2</button>
-            </div>
-            <div class="factor-array-stage">
-              <div class="factor-array-grid" id="factorFourGrid" aria-label="Susunan kotak untuk bilangan 4"></div>
-            </div>
-            <div class="factor-array-caption" id="factorFourCaption" aria-live="polite"></div>
-            <div class="factor-discovery-note">
-              <strong>Faktor dari 4:</strong> 1, 2, dan 4.
-            </div>
-          </section>
-
-          <section class="factor-explore-step" data-factor-step="2">
-            <div class="factor-example-heading">
-              <span class="factor-number-badge" id="factorExploreNumberBadge">6</span>
-              <div><h3>Eksplorasi bilangan komposit</h3><p>Pilih setiap bilangan, lalu amati salah satu atau beberapa susunan baris × kolom.</p></div>
-            </div>
-            <div class="factor-number-switch composite-number-switch" id="factorNumberSwitch">
-              <button class="active" type="button" data-explore-number="6">Bilangan 6</button>
-              <button type="button" data-explore-number="8">Bilangan 8</button>
-              <button type="button" data-explore-number="10">Bilangan 10</button>
-              <button type="button" data-explore-number="12">Bilangan 12</button>
-            </div>
-            <p class="factor-task-hint" id="factorCompositeProgressText">Amati bilangan 6, lalu coba juga 8, 10, dan 12.</p>
-            <div class="factor-arrangement-controls" id="factorCompositeChoices"></div>
-            <div class="factor-array-stage large">
-              <div class="factor-array-grid" id="factorCompositeGrid" aria-label="Susunan kotak faktor"></div>
-            </div>
-            <div class="factor-array-caption" id="factorCompositeCaption" aria-live="polite"></div>
-            <div class="factor-orientation-note">
-              <span>↔</span>
-              <p><strong>Perhatikan:</strong> susunan seperti 2 × 3 dan 3 × 2 memiliki jumlah kotak yang sama. Bentuknya berubah arah, tetapi faktor yang digunakan tetap <strong>2 dan 3</strong>. Hal yang sama dapat kamu amati pada 2 × 4 dan 4 × 2, atau 2 × 5 dan 5 × 2.</p>
-            </div>
-            <div class="factor-discovery-note" id="factorCompositeFactors"></div>
-          </section>
-
-          <section class="factor-explore-step" data-factor-step="3">
-            <div class="factor-example-heading">
-              <span class="factor-number-badge prime">P</span>
-              <div><h3>Bagaimana dengan bilangan prima?</h3><p>Amati bilangan 3, lalu pilih 5. Bandingkan banyak faktor yang dimiliki keduanya.</p></div>
-            </div>
-            <div class="factor-number-switch" id="primeNumberSwitch">
-              <button class="active" type="button" data-prime-number="3">Bilangan 3</button>
-              <button type="button" data-prime-number="5">Bilangan 5</button>
-            </div>
-            <p class="factor-task-hint" id="factorPrimeProgressText">Setelah mengamati 3, ketuk bilangan 5 untuk menyelesaikan bagian ini.</p>
-            <div class="factor-arrangement-controls" id="primeArrangementChoices"></div>
-            <div class="factor-array-stage">
-              <div class="factor-array-grid prime-grid" id="primeFactorGrid" aria-label="Susunan kotak bilangan prima"></div>
-            </div>
-            <div class="factor-array-caption" id="primeFactorCaption" aria-live="polite"></div>
-            <div class="prime-conclusion-box" id="primeConclusion">
-              <span>⭐</span>
-              <div><strong>Bilangan prima hanya memiliki dua faktor positif:</strong><p>1 dan bilangan itu sendiri.</p></div>
-            </div>
-          </section>
-
-          <div class="factor-explore-nav">
-            <button class="btn ghost" id="factorExplorePrev" type="button" disabled>← Sebelumnya</button>
-            <button class="btn primary" id="factorExploreNext" type="button">Mulai Contoh →</button>
-          </div>
-          <div class="factor-explore-complete hidden" id="factorExploreComplete" role="status">✓ Bengkel Faktor dituntaskan. Kota Lampu sekarang terbuka!</div>
-        </article>
-
-        <div class="completion-card hidden" id="factorIntroCompletion">
-          <span class="completion-icon">✓</span><h2>Misi Bengkel Faktor selesai!</h2><p>Kota Lampu sudah terbuka. Bawa koleksi faktormu untuk menemukan KPK.</p>
-        </div>
-        <div class="module-nav"><button class="btn ghost" data-go="landing" type="button">← Beranda</button><button class="btn primary" id="factorIntroNext" data-go="meeting1" type="button" disabled>Lanjut ke Pertemuan 1 →</button></div>
-      </div>
+        <div id="journeyGrid" class="journey-grid"></div>
+      </section>
     </section>
 
-    <section class="screen" id="meeting1" data-screen="meeting1">
-      <div class="container lesson-wrap">
-        <div class="module-banner blue">
-          <div><span class="eyebrow light">MISI 2 · KOTA LAMPU</span><h1>Kelipatan Persekutuan Terkecil (KPK)</h1><p>Mulai dari pola kejadian berulang, lalu temukan konsep KPK.</p></div>
-          <div class="banner-icon">🔁</div>
-        </div>
-
-        <article class="learning-card goal-card reveal">
-          <div class="card-icon">🎯</div><div><h2>Tujuan Pembelajaran</h2><p>Setelah belajar, kamu diharapkan dapat:</p>
-          <ul class="check-list"><li>Memahami konsep kelipatan</li><li>Menemukan kelipatan persekutuan</li><li>Menentukan KPK menggunakan representasi visual</li><li>Menghubungkan KPK dengan faktorisasi prima</li></ul></div>
-        </article>
-        <article class="learning-card reveal focus-card" id="lampSimulationCard">
-          <div class="section-heading"><div><span class="eyebrow">A. Masalah Pemantik</span><h2>Dua lampu, kapan menyala bersama?</h2></div><span class="pill">Simulasi</span></div>
-          <p class="lead">Lampu A berkedip setiap <strong>4 detik</strong>. Lampu B berkedip setiap <strong>6 detik</strong>. Keduanya berkedip bersama pada detik ke-0.</p>
-          <div class="lamp-sim">
-            <div class="lamp-unit"><div class="lamp blue-lamp" id="lampA"></div><strong>Lampu A</strong><small>setiap 4 detik</small></div>
-            <div class="timer-box"><small>Detik</small><strong id="lampTimer">0</strong><span id="lampStatus">Tekan mulai untuk mengamati pola.</span></div>
-            <div class="lamp-unit"><div class="lamp yellow-lamp" id="lampB"></div><strong>Lampu B</strong><small>setiap 6 detik</small></div>
-          </div>
-          <div class="center"><button class="btn primary" id="startLampSimulation" type="button">▶ Mulai Simulasi</button></div>
-          <div class="result-callout hidden" id="lampResult">💡 Ternyata kedua lampu menyala bersama pada detik ke-<strong>12</strong> dan detik ke-<strong>24</strong>. Pertemuan pertama setelah detik ke-0 adalah detik ke-12.</div>
-        </article>
-
-        <article class="learning-card reveal" id="numberLineCard">
-          <div class="section-heading"><div><span class="eyebrow">B. Dari Pola ke KPK</span><h2>Lihat lompatan pada garis bilangan</h2></div></div>
-          <div class="numberline-block"><div class="numberline-title"><span class="dot blue"></span>Lampu A <small>lompatan +4</small></div><div class="numberline" id="lineFour"></div></div>
-          <div class="numberline-block"><div class="numberline-title"><span class="dot orange"></span>Lampu B <small>lompatan +6</small></div><div class="numberline" id="lineSix"></div></div>
-          <button class="btn secondary" id="animateNumberLines" type="button">Tampilkan Pola</button>
-          <div class="pattern-summary" id="patternSummary">
-            <p><strong>Kelipatan 4:</strong> 4, 8, <mark>12</mark>, 16, 20, 24, ...</p>
-            <p><strong>Kelipatan 6:</strong> 6, <mark>12</mark>, 18, 24, ...</p>
-            <p><strong>Kelipatan persekutuan:</strong> 12, 24, ...</p>
-            <p class="kpk-smallest"><strong>Kelipatan Persekutuan Terkecil:</strong> <mark>12</mark></p>
-            <div class="formula-box">KPK (4, 6) = <strong>12</strong></div>
-          </div>
-        </article>
-
-        <article class="definition-card reveal"><span>📖</span><div><small>Definisi KPK</small><h3>KPK adalah kelipatan persekutuan yang nilainya paling kecil dari dua bilangan atau lebih.</h3></div></article>
-
-        <article class="learning-card reveal" id="meeting1PrimeConcept">
-          <div class="section-heading"><div><span class="eyebrow">C. KPK dengan Faktorisasi Prima</span><h2>Pilih faktor prima dengan pangkat terbesar</h2></div></div>
-          <p class="section-help">Untuk KPK, lihat faktorisasi kedua bilangan. Untuk setiap faktor prima yang muncul, pilih <strong>pangkat terbesar</strong>.</p>
-          <div class="factor-cards prime-source-cards">
-            <div class="factor-eq">12 = <span>2²</span> × <span>3¹</span></div>
-            <div class="factor-eq">18 = <span>2¹</span> × <span>3²</span></div>
-          </div>
-          <div class="prime-pick-guide">
-            <strong>Faktor prima yang muncul:</strong>
-            <div class="prime-source-summary">
-              <div><span>12</span><b>2²</b><b>3¹</b></div>
-              <div><span>18</span><b>2¹</b><b>3²</b></div>
-            </div>
-            <p class="tap-instruction">Ketuk faktor prima yang akan dipakai untuk KPK. Untuk bilangan prima yang sama, pilih yang berpangkat paling besar. Faktor prima lain tetap ikut dipilih.</p>
-            <div class="multi-select-grid prime-concept-picks" id="m1PrimePick" data-multi-select>
-              <button class="select-chip" data-value="4" data-label="2²" type="button">2²</button>
-              <button class="select-chip" data-value="2" data-label="2¹" type="button">2¹</button>
-              <button class="select-chip" data-value="3" data-label="3¹" type="button">3¹</button>
-              <button class="select-chip" data-value="9" data-label="3²" type="button">3²</button>
-            </div>
-            <div class="selected-prime-tray" id="m1PrimePicked" aria-live="polite">Belum ada faktor yang dipilih.</div>
-          </div>
-          <button class="btn secondary mobile-full" id="checkMeeting1PrimeConcept" type="button">Periksa Pilihan</button>
-          <div class="feedback" id="meeting1PrimeFeedback"></div>
-          <div class="auto-product hidden" id="meeting1PrimeResult"><span>Faktor terpilih</span><strong>2² × 3² = 36</strong><small>Jadi, KPK (12,18) = 36.</small></div>
-          <div class="multiples-check"><span>Kelipatan 12: 12, 24, <strong>36</strong>, ...</span><span>Kelipatan 18: 18, <strong>36</strong>, ...</span></div>
-        </article>
-
-        <article class="learning-card reveal">
-          <div class="section-heading"><div><span class="eyebrow">D. Contoh Terbimbing</span><h2>Bandingkan pangkat dan faktor prima lain</h2></div></div>
-          <div class="guided-example-card">
-            <span class="example-label">Contoh 1</span><h3>KPK dari 6 dan 8</h3>
-            <p>6 = 2¹ × 3 &nbsp; dan &nbsp; 8 = 2³</p>
-            <div class="prime-choice-explain"><span class="prime-kept">2³</span><span class="prime-kept">3</span></div>
-            <div class="formula-box">KPK = 2³ × 3 = <strong>24</strong></div>
-          </div>
-          <div class="guided-example-card extra-prime-example">
-            <span class="example-label">Contoh 2</span><h3>KPK dari 40 dan 28</h3>
-            <p>40 = <strong>2³</strong> × <strong>5</strong></p><p>28 = 2² × <strong>7</strong></p>
-            <p class="section-help">Faktor 2 muncul dengan pangkat berbeda. Pilih 2³ karena pangkatnya lebih besar. Faktor 5 dan 7 hanya muncul pada salah satu bilangan, jadi keduanya tetap digunakan.</p>
-            <div class="prime-choice-explain"><span class="prime-kept">2³</span><span class="prime-kept">5</span><span class="prime-kept">7</span></div>
-            <div class="formula-box success">KPK = 2³ × 5 × 7 = <strong>280</strong></div>
-          </div>
-        </article>
-
-        <article class="learning-card reveal challenge-card">
-          <div class="section-heading"><div><span class="eyebrow">E. Coba Pikirkan</span><h2>Dua alarm berbunyi setiap 5 menit dan 8 menit</h2></div><span class="pill orange">Latihan</span></div>
-          <p>Jika keduanya berbunyi bersama sekarang, setelah berapa menit keduanya berbunyi bersama lagi?</p>
-          <div class="mobile-answer-block">
-            <span class="answer-label">Pilih jawaban:</span>
-            <div class="tap-choice-group compact-choice" id="alarmChoices" aria-label="Pilihan jawaban alarm">
-              <button class="tap-choice" data-value="20" type="button">20 menit</button><button class="tap-choice" data-value="30" type="button">30 menit</button><button class="tap-choice" data-value="40" type="button">40 menit</button><button class="tap-choice" data-value="45" type="button">45 menit</button>
-            </div>
-            <button class="btn primary mobile-full" id="checkAlarmAnswer" type="button">Periksa Jawaban</button>
-          </div>
-          <div class="button-row"><button class="text-btn" id="alarmHintBtn" type="button">💡 Lihat Petunjuk</button></div>
-          <div class="feedback" id="alarmFeedback" aria-live="polite"></div>
-        </article>
-
-        <div class="module-nav"><button class="btn ghost" data-go="factorIntro" type="button">← Materi Awal</button><button class="btn primary" id="meeting1Next" data-go="activity1" type="button" disabled>Lanjut ke Aktivitas 1 →</button></div>
-      </div>
-    </section>
-
-    <section class="screen" id="activity1" data-screen="activity1">
-      <div class="container lesson-wrap">
-        <div class="module-banner green"><div><span class="eyebrow light">MISI 3 · LABORATORIUM KELIPATAN</span><h1>Tantangan Menemukan KPK</h1><p>Lanjutkan kelipatan, gunakan pohon faktor, pilih pangkat terbesar, lalu terapkan.</p></div><div class="banner-icon">🧩</div></div>
-        <div class="activity-flow" id="activity1Flow"><span class="done">AMATI</span><b>→</b><span>LANJUTKAN KELIPATAN</span><b>→</b><span>TEMUKAN</span><b>→</b><span>POHON FAKTOR</span><b>→</b><span>TERAPKAN</span></div>
-
-        <article class="learning-card reveal task-card" data-a1-step="1">
-          <div class="section-heading"><div><span class="eyebrow">A. Lanjutkan Kelipatan</span><h2>Pilih angka yang melanjutkan pola kelipatan</h2></div><span class="task-badge">Misi 1/4</span></div>
-          <p class="tap-instruction">Ketuk semua angka yang benar. Tidak perlu mengetik.</p>
-          <div class="question-grid">
-            <div class="mini-question"><h3>4, 8, ...</h3><div class="multi-select-grid sequence-pick-grid" id="a1Continue4" data-multi-select><button class="select-chip" data-value="10" type="button">10</button><button class="select-chip" data-value="12" type="button">12</button><button class="select-chip" data-value="16" type="button">16</button><button class="select-chip" data-value="18" type="button">18</button><button class="select-chip" data-value="20" type="button">20</button><button class="select-chip" data-value="24" type="button">24</button></div><small class="sequence-hint">Lanjutkan dengan menambah 4.</small></div>
-            <div class="mini-question"><h3>6, 12, ...</h3><div class="multi-select-grid sequence-pick-grid" id="a1Continue6" data-multi-select><button class="select-chip" data-value="14" type="button">14</button><button class="select-chip" data-value="18" type="button">18</button><button class="select-chip" data-value="20" type="button">20</button><button class="select-chip" data-value="24" type="button">24</button><button class="select-chip" data-value="30" type="button">30</button><button class="select-chip" data-value="32" type="button">32</button></div><small class="sequence-hint">Lanjutkan dengan menambah 6.</small></div>
-          </div>
-          <button class="btn secondary mobile-full" data-check-group="jump" type="button">Periksa Kelipatan</button><div class="feedback" id="jumpFeedback"></div>
-        </article>
-
-        <article class="learning-card reveal task-card" data-a1-step="2">
-          <div class="section-heading"><div><span class="eyebrow">B. Temukan KPK dengan Daftar Kelipatan</span><h2>Satu soal fokus</h2></div><span class="task-badge">Misi 2/4</span></div>
-          <div class="mini-question"><h3>KPK dari 3 dan 5</h3><p class="tap-instruction">Pilih kelipatan 3 dan kelipatan 5, lalu pilih kelipatan persekutuan terkecilnya.</p><div class="pick-block"><strong>Kelipatan 3</strong><div class="multi-select-grid" id="a1m3" data-multi-select><button class="select-chip" data-value="3" type="button">3</button><button class="select-chip" data-value="5" type="button">5</button><button class="select-chip" data-value="6" type="button">6</button><button class="select-chip" data-value="9" type="button">9</button><button class="select-chip" data-value="10" type="button">10</button><button class="select-chip" data-value="12" type="button">12</button><button class="select-chip" data-value="15" type="button">15</button></div></div><div class="pick-block"><strong>Kelipatan 5</strong><div class="multi-select-grid" id="a1m5" data-multi-select><button class="select-chip" data-value="3" type="button">3</button><button class="select-chip" data-value="5" type="button">5</button><button class="select-chip" data-value="6" type="button">6</button><button class="select-chip" data-value="10" type="button">10</button><button class="select-chip" data-value="12" type="button">12</button><button class="select-chip" data-value="15" type="button">15</button></div></div><div class="pick-block"><strong>Kelipatan Persekutuan Terkecil</strong><div class="tap-choice-group" id="a1kpk35"><button class="tap-choice" data-value="10" type="button">10</button><button class="tap-choice" data-value="15" type="button">15</button><button class="tap-choice" data-value="30" type="button">30</button></div></div></div>
-          <button class="btn secondary mobile-full" id="checkA1Multiples" type="button">Periksa Jawaban</button><div class="feedback" id="a1MultiplesFeedback"></div>
-        </article>
-
-        <article class="learning-card reveal task-card" data-a1-step="3" id="a1PrimeTreeTask">
-          <div class="section-heading"><div><span class="eyebrow">C. Susun Faktor Prima</span><h2>Gunakan pohon faktor saja</h2><p class="section-help">Selesaikan pohon faktor untuk 8 dan 12. Setelah itu pilih faktor prima dengan <strong>pangkat terbesar</strong>.</p></div><span class="task-badge">Misi 3/4</span></div>
-          <div class="prime-tree-pair">
-            <div class="tree-only-builder factor-builder" data-number="8" data-target="a1f8"><div class="factor-builder-head"><strong>8</strong><button class="factor-tree-btn" data-factor-tree-number="8" data-factor-tree-target="a1f8" type="button">🌳 Buka Pohon Faktor</button></div><input id="a1f8" type="hidden"><div class="factor-dropzone tree-only-result" data-factor-drop="a1f8"><span class="drop-placeholder">Belum diselesaikan</span></div><span class="factor-product" data-factor-product="a1f8">Belum disusun</span></div>
-            <div class="tree-only-builder factor-builder" data-number="12" data-target="a1f12"><div class="factor-builder-head"><strong>12</strong><button class="factor-tree-btn" data-factor-tree-number="12" data-factor-tree-target="a1f12" type="button">🌳 Buka Pohon Faktor</button></div><input id="a1f12" type="hidden"><div class="factor-dropzone tree-only-result" data-factor-drop="a1f12"><span class="drop-placeholder">Belum diselesaikan</span></div><span class="factor-product" data-factor-product="a1f12">Belum disusun</span></div>
-          </div>
-          <div class="prime-selection-stage hidden" id="a1PrimeSelectionStage"><strong>Pilih semua faktor prima dengan pangkat terbesar:</strong><div class="multi-select-grid prime-power-select" id="a1PrimeSelect" data-multi-select><button class="select-chip" data-value="8" data-label="2³" type="button">2³</button><button class="select-chip" data-value="4" data-label="2²" type="button">2²</button><button class="select-chip" data-value="3" data-label="3" type="button">3</button></div><div class="selected-prime-tray" id="a1PrimePicked" aria-live="polite">Belum ada faktor yang dipilih.</div></div>
-          <div class="auto-product hidden" id="a1PrimeAutoResult"><span>Hasil perkalian otomatis</span><strong>2³ × 3 = 24</strong><small>KPK (8,12) = 24</small></div>
-          <div class="feedback" id="a1PrimeFeedback"></div>
-        </article>
-
-        <article class="learning-card reveal task-card" data-a1-step="4" id="a1BusTreeTask">
-          <div class="section-heading"><div><span class="eyebrow">D. Terapkan</span><h2>Jadwal dua bus dengan pohon faktor</h2></div><span class="task-badge">Misi 4/4</span></div>
-          <div class="story-visual bus-visual"><span class="bus bus-a">🚌</span><div class="road"></div><span class="bus bus-b">🚌</span></div>
-          <p>Bus A datang setiap <strong>6 menit</strong> dan Bus B setiap <strong>8 menit</strong>. Karena ini kejadian berulang, kita mencari KPK.</p>
-          <div class="prime-tree-pair">
-            <div class="tree-only-builder factor-builder" data-number="6" data-target="a1bus6"><div class="factor-builder-head"><strong>6</strong><button class="factor-tree-btn" data-factor-tree-number="6" data-factor-tree-target="a1bus6" type="button">🌳 Pohon Faktor 6</button></div><input id="a1bus6" type="hidden"><div class="factor-dropzone tree-only-result" data-factor-drop="a1bus6"><span class="drop-placeholder">Belum diselesaikan</span></div><span class="factor-product" data-factor-product="a1bus6">Belum disusun</span></div>
-            <div class="tree-only-builder factor-builder" data-number="8" data-target="a1bus8"><div class="factor-builder-head"><strong>8</strong><button class="factor-tree-btn" data-factor-tree-number="8" data-factor-tree-target="a1bus8" type="button">🌳 Pohon Faktor 8</button></div><input id="a1bus8" type="hidden"><div class="factor-dropzone tree-only-result" data-factor-drop="a1bus8"><span class="drop-placeholder">Belum diselesaikan</span></div><span class="factor-product" data-factor-product="a1bus8">Belum disusun</span></div>
-          </div>
-          <div class="prime-selection-stage hidden" id="a1BusPrimeStage"><strong>Pilih semua faktor prima dengan pangkat terbesar:</strong><div class="multi-select-grid prime-power-select" id="a1BusPrimeSelect" data-multi-select><button class="select-chip" data-value="8" data-label="2³" type="button">2³</button><button class="select-chip" data-value="2" data-label="2¹" type="button">2¹</button><button class="select-chip" data-value="3" data-label="3" type="button">3</button></div><div class="selected-prime-tray" id="a1BusPrimePicked" aria-live="polite">Belum ada faktor yang dipilih.</div></div>
-          <div class="auto-product hidden" id="a1BusAutoResult"><span>Hasil perkalian otomatis</span><strong>2³ × 3 = 24</strong><small>Kedua bus datang bersama lagi setelah 24 menit.</small></div>
-          <div class="feedback" id="a1BusFeedback"></div>
-        </article>
-
-        <article class="learning-card reveal reflection-card"><div class="section-heading"><div><span class="eyebrow">Refleksi Mini</span><h2>Cara yang paling membantuku menemukan KPK adalah ...</h2></div></div><p class="tap-instruction">Pilih satu yang paling sesuai.</p><div class="tap-choice-group reflection-options" id="a1Reflection"><button class="tap-choice" data-value="multiples" type="button">🔢 Mencari kelipatan yang sama lalu memilih yang terkecil</button><button class="tap-choice" data-value="prime" type="button">🌳 Membuat pohon faktor lalu memilih pangkat terbesar</button><button class="tap-choice" data-value="visual" type="button">👀 Melihat pola pada garis bilangan</button></div><button class="btn primary mobile-full" id="saveA1Reflection" type="button">Simpan Pilihan</button><div class="feedback" id="a1ReflectionFeedback"></div></article>
-
-        <div class="completion-card hidden" id="activity1Complete"><span class="completion-icon">🎉</span><h2>Aktivitas 1 Selesai!</h2><p>Pertemuan 2 sudah terbuka. Kamu siap belajar FPB.</p></div>
-        <div class="module-nav"><button class="btn ghost" data-go="meeting1" type="button">← Sebelumnya</button><button class="btn primary" id="activity1Next" data-go="meeting2" type="button" disabled>Lanjut ke Pertemuan 2 →</button></div>
-      </div>
-    </section>
-
-    <section class="screen" id="meeting2" data-screen="meeting2">
-      <div class="container lesson-wrap">
-        <div class="module-banner orange"><div><span class="eyebrow light">MISI 4 · PUSAT PEMBAGIAN</span><h1>FPB dan Hubungan KPK-FPB</h1><p>Dari pembagian benda ke faktor persekutuan terbesar.</p></div><div class="banner-icon">🍊</div></div>
-
-        <article class="learning-card goal-card reveal"><div class="card-icon">🎯</div><div><h2>Tujuan Pembelajaran</h2><ul class="check-list"><li>Memahami faktor dan faktor persekutuan</li><li>Menentukan FPB secara visual</li><li>Menentukan FPB dengan faktorisasi prima</li><li>Membedakan penggunaan KPK dan FPB</li></ul></div></article>
-
-        <article class="learning-card reveal focus-card">
-          <div class="section-heading"><div><span class="eyebrow">A. Masalah Pemantik</span><h2>12 jeruk dan 18 apel</h2></div><span class="pill orange">Pictorial</span></div>
-          <p class="lead">Bu Rani memiliki <strong>12 jeruk</strong> dan <strong>18 apel</strong>. Semua buah akan dibagikan ke beberapa paket yang isinya sama banyak untuk setiap jenis buah. Berapa paket terbanyak?</p>
-          <div class="fruit-tray" id="fruitTray"><div><strong>12 jeruk</strong><div class="fruit-row" id="oranges"></div></div><div><strong>18 apel</strong><div class="fruit-row" id="apples"></div></div></div>
-          <div class="center"><button class="btn primary" id="groupFruitBtn" type="button">Coba Kelompokkan</button></div>
-          <div class="package-grid hidden" id="fruitPackages"></div>
-          <div class="result-callout hidden" id="fruitGroupResult">📦 Ternyata paket terbanyak yang bisa dibuat adalah <strong>6 paket</strong>, dengan jumlah jeruk setiap paket adalah <strong>2 jeruk</strong> dan jumlah apel setiap paket adalah <strong>3 apel</strong>.</div>
-        </article>
-
-        <article class="learning-card reveal" id="factorPairLesson">
-          <div class="section-heading"><div><span class="eyebrow">B. Dari Faktor ke FPB</span><h2>Temukan pasangan faktor</h2></div></div>
-          <p class="section-help">Ketuk atau tarik satu angka. Pasangan faktornya akan ikut muncul otomatis dengan arah panah.</p>
-          <div class="factor-pair-lesson-grid">
-            <div class="factor-pair-panel" data-pair-panel="12"><h3>Faktor 12</h3><div class="pair-source"><button class="factor-pair-source" draggable="true" data-pair-group="12" data-left="1" data-right="12" type="button">1</button><button class="factor-pair-source" draggable="true" data-pair-group="12" data-left="2" data-right="6" type="button">2</button><button class="factor-pair-source" draggable="true" data-pair-group="12" data-left="3" data-right="4" type="button">3</button></div><div class="factor-pair-drop" data-pair-drop="12" aria-live="polite"><span>Pasangan akan muncul di sini</span></div></div>
-            <div class="factor-pair-panel" data-pair-panel="18"><h3>Faktor 18</h3><div class="pair-source"><button class="factor-pair-source" draggable="true" data-pair-group="18" data-left="1" data-right="18" type="button">1</button><button class="factor-pair-source" draggable="true" data-pair-group="18" data-left="2" data-right="9" type="button">2</button><button class="factor-pair-source" draggable="true" data-pair-group="18" data-left="3" data-right="6" type="button">3</button></div><div class="factor-pair-drop" data-pair-drop="18" aria-live="polite"><span>Pasangan akan muncul di sini</span></div></div>
-          </div>
-          <div class="factor-common hidden" id="factorCommon"><p>Faktor persekutuan: <strong>1, 2, 3, 6</strong></p><div class="largest-common-label">Faktor Persekutuan Terbesar: <strong>6</strong></div><div class="formula-box success">FPB (12,18) = <strong>6</strong></div></div>
-        </article>
-
-        <article class="learning-card reveal">
-          <div class="section-heading"><div><span class="eyebrow">C. Pictorial Utama</span><h2>Pembagian ke paket sama banyak</h2></div></div>
-          <div class="package-demo" id="packageDemo"></div><p class="center-note">Setiap paket berisi <strong>2 jeruk</strong> dan <strong>3 apel</strong>.</p><div class="formula-box success package-max-note">Paket terbanyak yang bisa dibuat adalah <strong>6 paket</strong>.</div>
-        </article>
-
-        <article class="learning-card reveal">
-          <div class="section-heading"><div><span class="eyebrow">D. FPB dengan Faktorisasi Prima</span><h2>Sorot pangkat terkecil yang sama</h2></div></div>
-          <p class="section-help">Pada FPB, hanya faktor prima yang sama pada kedua bilangan yang dipakai. Ambil pangkat yang paling kecil.</p>
-          <div class="factor-cards prime-source-cards"><div class="factor-eq">12 = <span>2²</span> × <span>3¹</span></div><div class="factor-eq">18 = <span>2¹</span> × <span>3²</span></div></div>
-          <div class="minimum-prime-highlight"><span class="minimum-label">Pangkat terkecil yang sama</span><div class="prime-min-expression"><span class="prime-min">2¹</span><b class="math-times" aria-hidden="true">×</b><span class="prime-min">3¹</span></div></div>
-          <div class="formula-box success">FPB = 2 × 3 = <strong>6</strong></div><div class="note-box">💡 Faktor 2 dan 3 sama-sama muncul. Yang dipilih adalah 2¹ dan 3¹ karena pangkatnya paling kecil.</div>
-        </article>
-
-        <article class="learning-card reveal">
-          <div class="section-heading"><div><span class="eyebrow">E. Hubungan KPK dan FPB</span><h2>Kapan menggunakan KPK atau FPB?</h2></div></div>
-          <div class="concept-compare"><div class="concept-card kpk"><span>🔁</span><h3>KPK</h3><p>Mencari waktu atau kejadian yang terjadi <strong>bersamaan atau berulang</strong>.</p><small>Alarm • jadwal bus • jadwal kegiatan</small></div><div class="concept-card fpb"><span>📦</span><h3>FPB</h3><p>Membagi sesuatu menjadi kelompok yang <strong>sama banyak dan sebanyak mungkin</strong>.</p><small>Buah • makanan • kelompok</small></div></div>
-          <div class="choice-challenge"><p><strong>KPK atau FPB?</strong> Pilih konsep yang tepat untuk tiap situasi.</p><div id="conceptCards"></div></div>
-        </article>
-
-        <article class="learning-card reveal challenge-card">
-          <div class="section-heading"><div><span class="eyebrow">F. Coba Pikirkan</span><h2>20 roti dan 30 kotak susu</h2></div></div>
-          <p>Keduanya akan dibagikan ke paket yang sama. Konsep apa yang dibutuhkan?</p>
-          <div class="choice-row" id="breadChoice"><button class="choice-btn" data-value="kpk" type="button">KPK</button><button class="choice-btn" data-value="fpb" type="button">FPB</button></div>
-          <div class="pick-block"><strong>Pilih alasan</strong><div class="tap-choice-group wide-choice" id="breadReason"><button class="tap-choice" data-value="repeat" type="button">🔁 Karena mencari waktu kejadian berulang bertemu lagi</button><button class="tap-choice" data-value="groups" type="button">📦 Karena mencari jumlah paket sama banyak yang paling banyak</button><button class="tap-choice" data-value="largest" type="button">🔢 Karena cukup memilih bilangan yang paling besar</button></div></div>
-          <button class="btn primary" id="checkBreadChoice" type="button">Periksa Pilihan</button><div class="feedback" id="breadFeedback"></div>
-        </article>
-
-        <div class="module-nav"><button class="btn ghost" data-go="activity1" type="button">← Sebelumnya</button><button class="btn primary" id="meeting2Next" data-go="activity2" type="button" disabled>Lanjut ke Aktivitas 2 →</button></div>
-      </div>
-    </section>
-
-    <section class="screen" id="activity2" data-screen="activity2">
-      <div class="container lesson-wrap">
-        <div class="module-banner purple"><div><span class="eyebrow light">MISI 5 · GUDANG PAKET</span><h1>Tantangan FPB dan Penerapan KPK-FPB</h1><p>Kelompokkan benda, pilih strategi, lalu terapkan pada masalah nyata.</p></div><div class="banner-icon">🧠</div></div>
-        <div class="activity-flow" id="activity2Flow"><span class="done">AMATI</span><b>→</b><span>GESER BENDA</span><b>→</b><span>POHON FAKTOR</span><b>→</b><span>PILIH STRATEGI</span><b>→</b><span>TERAPKAN</span></div>
-
-        <article class="learning-card reveal task-card" id="objectMoveTask">
-          <div class="section-heading"><div><span class="eyebrow">A. Kelompokkan Benda</span><h2>Geser bendanya langsung</h2></div><span class="task-badge">Misi 1/4</span></div>
-          <p>Gunakan jumlah yang lebih sedikit: <strong>4 pensil</strong> dan <strong>6 penghapus</strong>. Bagikan semuanya ke <strong>2 paket</strong> dengan isi setiap paket sama.</p>
-          <p class="tap-instruction">HP: ketuk benda lalu ketuk paket. Laptop: benda juga bisa diseret langsung.</p>
-          <div class="move-object-source" id="moveObjectSource" aria-label="Benda yang belum dibagikan">
-            <strong class="source-label">Benda:</strong>
-            <button class="move-object pencil-object" draggable="true" data-object-id="p1" data-kind="pencil" type="button" aria-label="Pensil 1"><span aria-hidden="true">✏️</span></button>
-            <button class="move-object pencil-object" draggable="true" data-object-id="p2" data-kind="pencil" type="button" aria-label="Pensil 2"><span aria-hidden="true">✏️</span></button>
-            <button class="move-object pencil-object" draggable="true" data-object-id="p3" data-kind="pencil" type="button" aria-label="Pensil 3"><span aria-hidden="true">✏️</span></button>
-            <button class="move-object pencil-object" draggable="true" data-object-id="p4" data-kind="pencil" type="button" aria-label="Pensil 4"><span aria-hidden="true">✏️</span></button>
-            <button class="move-object eraser-object" draggable="true" data-object-id="e1" data-kind="eraser" type="button" aria-label="Penghapus 1"><span class="eraser-shape" aria-hidden="true"></span></button>
-            <button class="move-object eraser-object" draggable="true" data-object-id="e2" data-kind="eraser" type="button" aria-label="Penghapus 2"><span class="eraser-shape" aria-hidden="true"></span></button>
-            <button class="move-object eraser-object" draggable="true" data-object-id="e3" data-kind="eraser" type="button" aria-label="Penghapus 3"><span class="eraser-shape" aria-hidden="true"></span></button>
-            <button class="move-object eraser-object" draggable="true" data-object-id="e4" data-kind="eraser" type="button" aria-label="Penghapus 4"><span class="eraser-shape" aria-hidden="true"></span></button>
-            <button class="move-object eraser-object" draggable="true" data-object-id="e5" data-kind="eraser" type="button" aria-label="Penghapus 5"><span class="eraser-shape" aria-hidden="true"></span></button>
-            <button class="move-object eraser-object" draggable="true" data-object-id="e6" data-kind="eraser" type="button" aria-label="Penghapus 6"><span class="eraser-shape" aria-hidden="true"></span></button>
-          </div>
-          <div class="move-package-grid" id="movePackageGrid"><div class="move-package-bin" data-object-bin="0" role="button" tabindex="0"><strong>Paket 1</strong><div class="bin-objects"></div></div><div class="move-package-bin" data-object-bin="1" role="button" tabindex="0"><strong>Paket 2</strong><div class="bin-objects"></div></div></div>
-          <button class="btn secondary mobile-full" id="checkA2Grouping" type="button">Periksa Pembagian</button><div class="feedback" id="a2GroupingFeedback"></div>
-          <div class="auto-product hidden" id="a2GroupingResult"><span>Pembagian sama banyak</span><strong>2 paket</strong><small>Setiap paket berisi 2 pensil dan 3 penghapus.</small></div>
-        </article>
-
-        <article class="learning-card reveal task-card" id="a2FactorTreeTask">
-          <div class="section-heading"><div><span class="eyebrow">B. Tentukan FPB</span><h2>Fokus pada pohon faktor dan pasangan faktor</h2><p class="section-help">Selesaikan pohon faktor 24 dan 36. Setelah itu amati pasangan faktor, lalu pilih faktor persekutuan yang paling besar.</p></div><span class="task-badge">Misi 2/4</span></div>
-          <div class="prime-tree-pair">
-            <div class="tree-only-builder factor-builder" data-number="24" data-target="a2f24"><div class="factor-builder-head"><strong>24</strong><button class="factor-tree-btn" data-factor-tree-number="24" data-factor-tree-target="a2f24" type="button">🌳 Pohon Faktor 24</button></div><input id="a2f24" type="hidden"><div class="factor-dropzone tree-only-result" data-factor-drop="a2f24"><span class="drop-placeholder">Belum diselesaikan</span></div><span class="factor-product" data-factor-product="a2f24">Belum disusun</span></div>
-            <div class="tree-only-builder factor-builder" data-number="36" data-target="a2f36"><div class="factor-builder-head"><strong>36</strong><button class="factor-tree-btn" data-factor-tree-number="36" data-factor-tree-target="a2f36" type="button">🌳 Pohon Faktor 36</button></div><input id="a2f36" type="hidden"><div class="factor-dropzone tree-only-result" data-factor-drop="a2f36"><span class="drop-placeholder">Belum diselesaikan</span></div><span class="factor-product" data-factor-product="a2f36">Belum disusun</span></div>
-          </div>
-          <div class="pair-stage hidden" id="a2PairStage"><strong>Ketuk faktor di kiri, pasangannya muncul mengikuti panah:</strong><div class="factor-pair-lesson-grid compact-pairs"><div class="factor-pair-panel"><h3>24</h3><div class="pair-source"><button class="factor-pair-source" draggable="true" data-pair-group="a2-24" data-left="1" data-right="24" type="button">1</button><button class="factor-pair-source" draggable="true" data-pair-group="a2-24" data-left="2" data-right="12" type="button">2</button><button class="factor-pair-source" draggable="true" data-pair-group="a2-24" data-left="3" data-right="8" type="button">3</button><button class="factor-pair-source" draggable="true" data-pair-group="a2-24" data-left="4" data-right="6" type="button">4</button></div><div class="factor-pair-drop" data-pair-drop="a2-24" aria-live="polite"><span>Pasangan faktor 24</span></div></div><div class="factor-pair-panel"><h3>36</h3><div class="pair-source"><button class="factor-pair-source" draggable="true" data-pair-group="a2-36" data-left="1" data-right="36" type="button">1</button><button class="factor-pair-source" draggable="true" data-pair-group="a2-36" data-left="2" data-right="18" type="button">2</button><button class="factor-pair-source" draggable="true" data-pair-group="a2-36" data-left="3" data-right="12" type="button">3</button><button class="factor-pair-source" draggable="true" data-pair-group="a2-36" data-left="4" data-right="9" type="button">4</button><button class="factor-pair-source" draggable="true" data-pair-group="a2-36" data-left="6" data-right="6" type="button">6</button></div><div class="factor-pair-drop" data-pair-drop="a2-36" aria-live="polite"><span>Pasangan faktor 36</span></div></div></div></div>
-          <div class="fpb-choice-stage hidden" id="a2FpbChoiceStage"><strong>Pilih faktor yang sama dan paling besar:</strong><div class="tap-choice-group" id="a2fpb2436"><button class="tap-choice" data-value="6" type="button">6</button><button class="tap-choice" data-value="12" type="button">12</button><button class="tap-choice" data-value="18" type="button">18</button></div></div>
-          <div class="prime-minimum-auto hidden" id="a2PrimeMinimum"><span>Dari pohon faktor</span><div class="factor-cards prime-source-cards"><div class="factor-eq">24 = <span>2³</span> × <span>3</span></div><div class="factor-eq">36 = <span>2²</span> × <span>3²</span></div></div><p>Pangkat terkecil yang sama langsung disorot:</p><div class="prime-choice-explain"><span class="prime-min">2²</span><span class="prime-min">3</span></div><div class="formula-box success">FPB = 2² × 3 = <strong>12</strong></div></div>
-          <div class="feedback" id="a2FactorsFeedback"></div>
-        </article>
-
-        <article class="learning-card reveal task-card">
-          <div class="section-heading"><div><span class="eyebrow">C. KPK atau FPB?</span><h2>Pilih konsep yang tepat</h2></div><span class="task-badge">Misi 3/4</span></div>
-          <div id="strategyQuiz" class="strategy-quiz"></div><div class="feedback" id="strategyFeedback"></div>
-        </article>
-
-        <article class="learning-card reveal task-card">
-          <div class="section-heading"><div><span class="eyebrow">D. Terapkan</span><h2>Dua masalah, dua strategi</h2></div><span class="task-badge">Misi 4/4</span></div>
-          <div class="question-grid">
-            <div class="mini-question story-card"><span class="story-icon">🚌</span><h3>Masalah KPK</h3><p>Bus sekolah A datang setiap 8 menit dan bus sekolah B setiap 12 menit. Jika sekarang datang bersama, kapan mereka datang bersama lagi?</p><div class="pick-block"><strong>Pilih strategi</strong><div class="tap-choice-group" id="a2BusStrategy"><button class="tap-choice" data-value="KPK" type="button">KPK</button><button class="tap-choice" data-value="FPB" type="button">FPB</button></div></div><div class="pick-block"><strong>Pilih jawaban</strong><div class="tap-choice-group" id="a2BusAnswer"><button class="tap-choice" data-value="12" type="button">12 menit</button><button class="tap-choice" data-value="24" type="button">24 menit</button><button class="tap-choice" data-value="48" type="button">48 menit</button></div></div></div>
-            <div class="mini-question story-card"><span class="story-icon">🥤</span><h3>Masalah FPB</h3><p>Tersedia 24 botol minum dan 36 kotak makanan. Semua dibagikan ke paket yang sama. Berapa paket terbanyak?</p><div class="pick-block"><strong>Pilih strategi</strong><div class="tap-choice-group" id="a2PackStrategy"><button class="tap-choice" data-value="KPK" type="button">KPK</button><button class="tap-choice" data-value="FPB" type="button">FPB</button></div></div><div class="pick-block"><strong>Pilih jawaban</strong><div class="tap-choice-group" id="a2PackAnswer"><button class="tap-choice" data-value="6" type="button">6 paket</button><button class="tap-choice" data-value="12" type="button">12 paket</button><button class="tap-choice" data-value="24" type="button">24 paket</button></div></div></div>
-          </div>
-          <button class="btn secondary" id="checkA2Stories" type="button">Periksa Penerapan</button><div class="feedback" id="a2StoriesFeedback"></div>
-        </article>
-
-        <article class="learning-card reveal reflection-card"><div class="section-heading"><div><span class="eyebrow">E. Refleksi</span><h2>Cocokkan ciri KPK dan FPB</h2></div></div><p class="tap-instruction">Untuk setiap pernyataan, ketuk KPK atau FPB.</p><div class="reflection-match" id="a2Reflection"><div class="match-row" data-reflection-row data-answer="KPK"><span>🔁 Kejadian berulang bertemu kembali</span><div class="tap-choice-group"><button class="tap-choice" data-value="KPK" type="button">KPK</button><button class="tap-choice" data-value="FPB" type="button">FPB</button></div></div><div class="match-row" data-reflection-row data-answer="FPB"><span>📦 Membuat kelompok sama banyak sebanyak mungkin</span><div class="tap-choice-group"><button class="tap-choice" data-value="KPK" type="button">KPK</button><button class="tap-choice" data-value="FPB" type="button">FPB</button></div></div><div class="match-row" data-reflection-row data-answer="KPK"><span>🚌 Jadwal bus atau alarm bertemu lagi</span><div class="tap-choice-group"><button class="tap-choice" data-value="KPK" type="button">KPK</button><button class="tap-choice" data-value="FPB" type="button">FPB</button></div></div><div class="match-row" data-reflection-row data-answer="FPB"><span>🍎 Membagi benda ke paket sama banyak</span><div class="tap-choice-group"><button class="tap-choice" data-value="KPK" type="button">KPK</button><button class="tap-choice" data-value="FPB" type="button">FPB</button></div></div></div><button class="btn primary mobile-full" id="saveA2Reflection" type="button">Periksa Matching</button><div class="feedback" id="a2ReflectionFeedback"></div><div class="reflection-summary hidden" id="reflectionSummary"><div><strong>KPK</strong><p>Cari kapan sesuatu bertemu atau terjadi bersama kembali.</p></div><div><strong>FPB</strong><p>Cari jumlah kelompok terbanyak yang dapat dibuat sama banyak.</p></div></div></article>
-
-        <div class="completion-card hidden" id="activity2Complete"><span class="completion-icon">🏁</span><h2>Semua wilayah berhasil dituntaskan!</h2><p>Misi Akhir di Dewan Kota Bilangan sudah terbuka.</p></div>
-        <div class="module-nav"><button class="btn ghost" data-go="meeting2" type="button">← Sebelumnya</button><button class="btn primary" id="activity2Next" data-go="quiz" type="button" disabled>Mulai Misi Akhir →</button></div>
-      </div>
-    </section>
-
-    <section class="screen" id="quiz" data-screen="quiz">
-      <div class="container quiz-container">
-        <div class="module-banner navy"><div><span class="eyebrow light">MISI AKHIR · DEWAN KOTA BILANGAN</span><h1>Tantangan Akhir</h1><p>10 soal tampil satu per satu. Jawab berdasarkan pemahamanmu.</p></div><div class="banner-icon">📝</div></div>
-        <div class="quiz-shell" id="quizShell">
-          <div class="quiz-top"><div><span id="quizCounter">Soal 1 dari 10</span><small id="quizCategory">Konsep</small></div><strong id="quizLiveScore">0 benar</strong></div>
-          <div class="quiz-progress"><span id="quizProgressFill"></span></div>
-          <div id="quizQuestionArea"></div>
-          <div class="feedback" id="quizFeedback" aria-live="polite"></div>
-          <div class="quiz-actions"><button class="text-btn" id="quizHint" type="button">💡 Petunjuk</button><button class="btn primary" id="quizSubmit" type="button">Periksa Jawaban</button><button class="btn primary hidden" id="quizNext" type="button">Soal Berikutnya →</button></div>
+    <section id="learning" class="screen">
+      <div class="module-header">
+        <button id="backHomeBtn" class="ghost-btn">← Beranda</button>
+        <div>
+          <span id="moduleEyebrow" class="eyebrow">Eksplorasi</span>
+          <h2 id="moduleTitle">Eksplorasi Awal</h2>
         </div>
       </div>
+
+      <div id="moduleContent"></div>
+
+      <div class="module-actions">
+        <button id="prevModuleBtn" class="ghost-btn">← Sebelumnya</button>
+        <button id="nextModuleBtn" class="primary-btn" disabled>Lanjut →</button>
+      </div>
     </section>
 
-    <section class="screen" id="result" data-screen="result">
-      <div class="container result-container">
-        <div class="result-card">
-          <span class="eyebrow">LAPORAN PETUALANGAN</span><h1 id="resultTitle">Hasil Misi Akhir</h1>
-          <div class="score-circle"><strong id="finalScore">0</strong><span>/ 100</span></div>
-          <h2 id="scoreMessage">Terus berlatih</h2><p id="scoreDescription"></p>
-          <div class="mastery-grid" id="masteryGrid"></div>
-          <div class="result-actions"><button class="btn secondary" id="reviewMaterialBtn" type="button">Pelajari Kembali</button><button class="btn primary" id="retryQuizBtn" type="button">Ulangi Evaluasi</button><button class="btn ghost" data-go="landing" type="button">Kembali ke Beranda</button></div>
+    <section id="progressScreen" class="screen">
+      <div class="module-header">
+        <button class="ghost-btn nav-home">← Beranda</button>
+        <div>
+          <span class="eyebrow">Progress</span>
+          <h2>Perjalanan Belajarmu</h2>
         </div>
       </div>
+      <div class="panel">
+        <div id="progressList" class="progress-list"></div>
+        <button id="resetProgressBtn" class="danger-btn">Reset Progress</button>
+      </div>
+    </section>
+
+    <section id="resultsScreen" class="screen">
+      <div class="module-header">
+        <button class="ghost-btn nav-home">← Beranda</button>
+        <div>
+          <span class="eyebrow">Hasil Belajar</span>
+          <h2>Ringkasan Evaluasi</h2>
+        </div>
+      </div>
+      <div id="resultsContent"></div>
     </section>
   </main>
 
-  <nav class="bottom-nav" aria-label="Navigasi mobile">
-    <button type="button" data-go="landing"><span>🗺️</span>Peta</button>
-    <button type="button" data-go="factorIntro"><span>🎯</span>Misi</button>
-    <button type="button" data-go="activity1"><span>🧩</span>Tantangan</button>
-    <button type="button" id="mobileProgressBtn"><span>🏅</span>Progress</button>
+  <nav class="bottom-nav" aria-label="Navigasi utama">
+    <button data-nav="home" class="nav-btn active">🏠<span>Beranda</span></button>
+    <button data-nav="learning" class="nav-btn">📘<span>Belajar</span></button>
+    <button data-nav="progressScreen" class="nav-btn">📊<span>Progress</span></button>
   </nav>
 
-  <div class="factor-tree-modal hidden" id="factorTreeModal" role="dialog" aria-modal="true" aria-labelledby="factorTreeTitle">
-    <div class="factor-tree-dialog">
-      <div class="factor-tree-toolbar">
-        <div><span class="eyebrow">POHON FAKTOR INTERAKTIF</span><h2 id="factorTreeTitle">Cari faktor prima</h2><p id="factorTreeInstruction">Pecah bilangan komposit menjadi dua faktor sampai semua ujungnya prima.</p></div>
-        <button class="icon-btn" id="closeFactorTree" type="button" aria-label="Tutup pohon faktor">✕</button>
-      </div>
-      <div class="factor-tree-workspace" id="factorTreeWorkspace"></div>
-      <div class="factor-tree-summary" id="factorTreeSummary" aria-live="polite"></div>
-      <div class="factor-tree-actions"><button class="btn ghost" id="resetFactorTree" type="button">↻ Ulangi Pohon</button><button class="btn primary" id="useFactorTreeResult" type="button" disabled>Gunakan Hasil Pohon →</button></div>
-    </div>
-  </div>
-
-  <div class="game-discovery-overlay hidden" id="gameDiscoveryOverlay" role="dialog" aria-modal="true" aria-labelledby="gameDiscoveryTitle">
-    <div class="game-discovery-card">
-      <div class="discovery-burst" aria-hidden="true">✦</div>
-      <span class="eyebrow">Penemuan Baru!</span>
-      <div class="discovery-icon" id="gameDiscoveryIcon">🔎</div>
-      <h2 id="gameDiscoveryTitle">Konsep ditemukan</h2>
-      <p id="gameDiscoveryDescription"></p>
-      <button class="btn primary" id="saveDiscoveryBtn" type="button">Simpan ke Koleksi ✓</button>
-    </div>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
-
-  <script src="js/progress.js" defer></script>
-  <script src="js/navigation.js" defer></script>
-  <script src="js/interactions.js" defer></script>
-  <script src="js/factor-tools.js" defer></script>
-  <script src="js/factor-exploration.js" defer></script>
-  <script src="js/kpk.js" defer></script>
-  <script src="js/fpb.js" defer></script>
-  <script src="js/quiz.js" defer></script>
-  <script src="js/game.js" defer></script>
-  <script src="js/app.js" defer></script>
+  <script src="js/progress.js"></script>
+  <script src="js/game-layer.js"></script>
+  <script src="js/foundations.js"></script>
+  <script src="js/foundation-activities.js"></script>
+  <script src="js/foundation-flow.js"></script>
+  <script src="js/final-mission.js"></script>
+  <script src="js/decomposition.js"></script>
+  <script src="js/patterns.js"></script>
+  <script src="js/abstraction.js"></script>
+  <script src="js/algorithms.js"></script>
+  <script src="js/robot.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/interactions.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

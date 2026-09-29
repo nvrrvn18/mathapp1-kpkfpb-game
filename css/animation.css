@@ -1,8 +1,10 @@
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-@keyframes floaty{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(4deg)}}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pulseSoft{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-@keyframes confettiFall{to{transform:translateY(110vh) rotate(540deg)}}
-@keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
-.fade-up{animation:fadeUp .65s both}.delay-1{animation-delay:.08s}.delay-2{animation-delay:.16s}.delay-3{animation-delay:.24s}.delay-4{animation-delay:.32s}.floating-symbol{position:absolute;font-weight:900;color:rgba(47,111,169,.16);font-size:42px;animation:floaty 5s ease-in-out infinite}.floating-symbol.s1{left:3%;top:21%}.floating-symbol.s2{right:4%;top:49%;animation-delay:1s}.floating-symbol.s3{left:43%;top:12%;animation-delay:2s}.math-card{animation:floaty 4.5s ease-in-out infinite}.mc2{animation-delay:1.3s}.lamp.on{animation:pulse .32s ease}.number-point{opacity:0;transform:translateY(8px);transition:.35s ease}.number-point.visible{opacity:1;transform:translateY(0)}.number-point.common.visible{animation:pulse .7s ease}.reveal{opacity:0;transform:translateY(16px);transition:.55s ease}.reveal.visible{opacity:1;transform:translateY(0)}.feedback.wrong{animation:shake .24s ease}.feedback.correct{animation:popIn .3s ease}.fruit-package,.demo-package{animation:popIn .38s both}.completion-card:not(.hidden){animation:popIn .45s ease}.confetti-piece{animation:confettiFall 2.7s linear forwards}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+.screen.active .panel,.screen.active .activity-card,.screen.active .hero-card{animation:fadeUp .28s ease both}
+.float-card:nth-child(1),.float-card:nth-child(4){animation:pulseSoft 3.2s ease-in-out infinite}
+.shake{animation:shake .22s linear 2}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
+}
