@@ -1,202 +1,101 @@
-# Berpikir Komputasional Kelas VII
+# Misi Kota Bilangan - KPK dan FPB (Game V8)
 
-Aplikasi web pembelajaran interaktif untuk **Informatika SMP/MTs Kelas VII** dengan fokus pada:
+Aplikasi pembelajaran interaktif Matematika Kelas VII berbasis HTML, CSS, dan Vanilla JavaScript. Versi ini mengubah alur KPK dan FPB menjadi pengalaman mission-based tanpa menghilangkan aktivitas belajar yang sudah ada.
 
-- Dekomposisi
-- Pengenalan pola
-- Abstraksi
-- Algoritma
-- Penerapan terpadu
-- Evaluasi akhir
+## Konsep game
 
-Aplikasi dibuat **mobile-first**, tanpa backend, dan siap dijalankan sebagai static website di GitHub Pages.
+Siswa berperan sebagai Penjelajah Bilangan dan menyelesaikan wilayah secara berurutan:
 
-## Fitur
+1. **Misi 1 - Bengkel Faktor**: eksplorasi pictorial faktor dan bilangan prima.
+2. **Misi 2 - Kota Lampu**: menemukan KPK dari kejadian berulang.
+3. **Misi 3 - Laboratorium Kelipatan**: tantangan kelipatan, pohon faktor, dan KPK.
+4. **Misi 4 - Pusat Pembagian**: menemukan FPB melalui pengelompokan dan pasangan faktor.
+5. **Misi 5 - Gudang Paket**: penerapan KPK dan FPB.
+6. **Misi Akhir - Dewan Kota Bilangan**: evaluasi 10 soal.
 
-- Peta misi bergaya game
-- Pemilihan karakter tanpa mengetik
-- XP sebagai indikator perjalanan
-- Empat fondasi sebagai skill yang dapat dibuka
-- Animasi reward ketika skill baru diperoleh
-- Arena latihan berupa mini-game singkat
-- Final Mission berbasis pemilihan strategi
-- Sistem percobaan dan hint tanpa kehilangan nyawa
-- Bintang berdasarkan proses pada Final Mission
-- Final Level sebagai evaluasi akhir
-- Koleksi skill pada hasil belajar
+Tidak ada sistem nyawa atau penalti karena salah. Kesalahan tetap menjadi bagian dari eksplorasi. Reward diberikan saat siswa menemukan konsep atau menuntaskan misi.
 
-- Definisi interaktif empat fondasi berpikir komputasional
-- Latihan fondasi singkat dalam 3 tahap agar tidak monoton
-- Pernyataan dan soal dipilih secara acak setiap sesi
-- Urutan pilihan jawaban diacak agar posisi jawaban benar tidak mudah ditebak
-- Aktivitas tap-only: cocokkan fondasi, cek pemahaman, dan benar/salah
+## Fitur game yang ditambahkan
 
-- Eksplorasi awal Robo Tersesat terdiri dari dua jalur berbeda
-- Grid Robo dioptimalkan untuk layar HP dengan kontrol arah besar dan responsif
-- Progression dan unlock modul
-- LocalStorage untuk menyimpan progress
-- Aktivitas dekomposisi
-- Pengenalan pola
-- Abstraksi melalui pemilahan informasi
-- Sequence builder untuk algoritma
-- Simulasi robot
-- Visualisasi animatif cara kerja empat fondasi
-- Tampilan Cara Kerja 4 Fondasi dioptimalkan untuk layar HP dengan satu tahap per layar
-- Evaluasi acak dari bank soal JSON
-- Breakdown hasil berdasarkan kompetensi
-- Reset progress
-- Responsive untuk HP dan laptop
-- Fallback soal jika `questions.json` gagal dimuat
+- Peta petualangan dengan wilayah terkunci/terbuka/selesai.
+- Bintang penguasaan 1-3 untuk setiap misi. Bintang tidak berdasarkan kecepatan.
+- Koleksi Penemuan berisi konsep matematika yang ditemukan siswa.
+- Efek **Penemuan Baru** pada milestone pembelajaran.
+- Mission HUD pada setiap modul yang menampilkan tujuan, progres, dan bintang.
+- Pemandu ringan bernama Nara pada halaman awal.
+- Progress dan koleksi tersimpan di `localStorage`.
+- Progress utama sekarang memasukkan Misi Akhir sehingga 100% diperoleh setelah evaluasi selesai.
+- Tetap mobile-first dan seluruh drag penting memiliki pola tap yang nyaman di HP.
 
-## Struktur
+## Fitur pembelajaran yang dipertahankan
+
+- Eksplorasi faktor pictorial 4, 6, 8, 10, 12 serta bilangan prima 3 dan 5.
+- Simulasi dua lampu dan garis bilangan KPK.
+- Pemilihan faktor prima berpangkat terbesar untuk KPK.
+- Pohon faktor interaktif.
+- Pasangan faktor dan visual pembagian benda untuk FPB.
+- Pemilihan faktor prima berpangkat terkecil untuk FPB.
+- Matching KPK/FPB dan soal penerapan.
+- Evaluasi akhir, skor, progress, fullscreen, suara, dan reset progress.
+
+## Struktur file
 
 ```text
-berpikir-komputasional-kelas7/
-├── index.html
-├── .nojekyll
-├── README.md
-├── css/
-│   ├── style.css
-│   ├── responsive.css
-│   └── animation.css
-├── js/
-│   ├── app.js
-│   ├── navigation.js
-│   ├── interactions.js
-│   ├── quiz.js
-│   ├── progress.js
-│   ├── game-layer.js
-│   ├── final-mission.js
-│   ├── foundations.js
-│   ├── foundation-activities.js
-│   ├── foundation-flow.js
-│   ├── decomposition.js
-│   ├── patterns.js
-│   ├── abstraction.js
-│   ├── algorithms.js
-│   └── robot.js
-├── data/
-│   └── questions.json
-└── assets/
-    ├── images/
-    └── icons/
+index.html
+css/
+  style.css
+  responsive.css
+  animation.css
+  factor-exploration.css
+  game.css
+js/
+  app.js
+  navigation.js
+  progress.js
+  interactions.js
+  factor-tools.js
+  factor-exploration.js
+  kpk.js
+  fpb.js
+  quiz.js
+  game.js
+data/
+  questions.json
+assets/
+  images/
+  icons/
+.nojekyll
+README.md
 ```
 
-## Menjalankan secara lokal
+## Mengubah teks
 
-Karena bank soal dimuat memakai `fetch()`, sebaiknya jalankan melalui local server.
+Mayoritas teks materi berada di `index.html`.
 
-### Python
+- Feedback KPK: `js/kpk.js`
+- Feedback FPB: `js/fpb.js`
+- Soal evaluasi: `data/questions.json`
+- Nama wilayah, deskripsi misi, koleksi, dan sistem bintang: `js/game.js`
+- Tampilan game: `css/game.css`
+
+Hindari mengubah `id`, `data-value`, `data-screen`, atau nama fungsi JavaScript jika hanya ingin memperbaiki kalimat.
+
+## Menjalankan aplikasi
+
+Buka `index.html` melalui web server statis. Untuk pengujian lokal, salah satu cara sederhana adalah:
 
 ```bash
 python -m http.server 8000
 ```
 
-Kemudian buka:
-
-```text
-http://localhost:8000
-```
-
-### VS Code
-
-Gunakan ekstensi Live Server lalu buka `index.html`.
+lalu buka `http://localhost:8000`.
 
 ## GitHub Pages
 
-1. Buat repository baru di GitHub.
-2. Salin seluruh isi folder ini ke root repository.
-3. Commit dan push.
-4. Buka **Settings → Pages**.
-5. Pada **Build and deployment**, pilih `Deploy from a branch`.
-6. Pilih branch `main` dan folder `/ (root)`.
-7. Simpan.
+1. Unggah seluruh isi folder ini ke root repository GitHub.
+2. Buka **Settings > Pages**.
+3. Pilih **Deploy from a branch**.
+4. Pilih branch `main` dan folder `/ (root)`.
+5. Simpan dan buka alamat GitHub Pages yang diberikan.
 
-File `.nojekyll` sudah disediakan.
-
-## Mengubah Materi
-
-Konten dan logika modul terdapat di:
-
-- `js/decomposition.js`
-- `js/patterns.js`
-- `js/abstraction.js`
-- `js/algorithms.js`
-- `js/robot.js`
-- `js/app.js`
-
-Untuk mengganti judul dan urutan modul, ubah `AppData.modules` di `js/app.js`.
-
-## Menambah Soal
-
-Edit:
-
-```text
-data/questions.json
-```
-
-Format minimal:
-
-```json
-{
-  "id": "q13",
-  "type": "mc",
-  "competency": "decomposition",
-  "difficulty": "application",
-  "question": "Teks soal",
-  "options": ["A", "B", "C", "D"],
-  "answer": 0,
-  "feedback": "Petunjuk jika jawaban belum tepat."
-}
-```
-
-`answer` menggunakan indeks mulai dari `0`.
-
-Tag `competency` yang disarankan:
-
-- `decomposition`
-- `pattern`
-- `abstraction`
-- `algorithm`
-- `integrated`
-
-## LocalStorage
-
-Namespace utama:
-
-```text
-ctGrade7_state_v1
-```
-
-Data yang disimpan meliputi:
-
-- modul selesai
-- modul terbuka
-- posisi modul terakhir
-- nilai evaluasi
-- breakdown kompetensi
-- refleksi jika dikembangkan lebih lanjut
-
-## Menambah Level Robot
-
-Edit `js/robot.js`.
-
-Bagian utama:
-
-```js
-const start={r:0,c:0};
-const goal={r:4,c:4};
-const blocks=new Set(["0,2","1,2","2,2","3,1"]);
-```
-
-Koordinat menggunakan format:
-
-```text
-baris,kolom
-```
-
-Indeks dimulai dari `0`.
-
-## Catatan Pengembangan
-
-Versi ini adalah fondasi repository yang sudah dapat dijalankan. Untuk produksi pembelajaran sekolah, isi aktivitas dan evaluasi sebaiknya disesuaikan lagi dengan modul, LKPD, atau tujuan pembelajaran resmi yang digunakan guru.
+Aplikasi tidak membutuhkan backend.

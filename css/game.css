@@ -1,0 +1,64 @@
+/* =========================================================
+   V8 GAME LAYER · Misi Kota Bilangan
+   Gamification berbasis penemuan konsep, bukan hukuman.
+   ========================================================= */
+:root{
+  --game-gold:#f1b94b;
+  --game-gold-soft:#fff7d8;
+  --game-ink:#17324f;
+  --game-sky:#e8f5ff;
+}
+
+.game-command-center{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.45fr);gap:18px;align-items:start;margin-top:-8px}
+.game-guide-card,.game-map-card,.game-collection-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.game-guide-card{display:flex;align-items:center;gap:16px;padding:20px;grid-column:1}
+.game-guide-avatar{width:72px;height:72px;border-radius:24px;display:grid;place-items:center;flex:0 0 auto;font-size:2.25rem;background:linear-gradient(145deg,#e8f5ff,#fff5dd);border:1px solid #d9e9f5;box-shadow:0 10px 24px rgba(22,54,95,.08)}
+.game-guide-card h2{margin:0;color:var(--navy)}.game-guide-card p{margin:.28rem 0 0;color:var(--muted)}
+.game-map-card{padding:22px;grid-column:2;grid-row:1 / span 2}
+.game-map-legend{font-size:.78rem;font-weight:900;color:#9a6a14;background:var(--game-gold-soft);border:1px solid #f6dfa4;border-radius:999px;padding:6px 10px;white-space:nowrap}
+.game-collection-card{padding:20px;grid-column:1}.collection-count{border-radius:999px;padding:7px 11px;background:var(--green-soft);color:var(--success);font-size:.88rem}.collection-help{margin:-4px 0 14px;color:var(--muted);font-size:.9rem}
+
+.game-map{position:relative;display:grid;gap:12px;padding:8px 0}
+.game-map::before{content:"";position:absolute;left:29px;top:37px;bottom:37px;width:4px;border-radius:99px;background:linear-gradient(var(--blue),var(--green),var(--orange),var(--purple));opacity:.24}
+.game-map-node{position:relative;display:grid;grid-template-columns:60px 1fr auto;align-items:center;gap:13px;width:100%;min-height:84px;padding:12px 14px 12px 0;border:1px solid var(--line);border-radius:20px;background:#fbfdff;text-align:left;color:var(--ink);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,opacity .2s ease;overflow:hidden}
+.game-map-node::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(94,168,255,.06),transparent 55%);pointer-events:none}
+.game-map-node:not(:disabled):hover{transform:translateY(-2px);border-color:#bcdcf7;box-shadow:0 10px 22px rgba(22,54,95,.08)}
+.game-map-node:disabled{cursor:not-allowed;opacity:.62;background:#f3f6f8}
+.game-node-icon{position:relative;z-index:2;width:58px;height:58px;border-radius:20px;display:grid;place-items:center;font-size:1.75rem;background:#fff;border:3px solid #d9e5ef;box-shadow:0 6px 14px rgba(22,54,95,.08)}
+.game-map-node.complete .game-node-icon{background:var(--green-soft);border-color:var(--green);box-shadow:0 0 0 5px rgba(115,199,161,.12)}
+.game-map-node.current .game-node-icon{background:var(--blue-soft);border-color:var(--blue);animation:missionPulse 2.2s infinite}
+.game-map-node.locked .game-node-icon{filter:grayscale(.8)}
+.game-node-copy{position:relative;z-index:2;min-width:0}.game-node-copy small,.game-node-copy strong,.game-node-copy span{display:block}.game-node-copy small{color:#6b8195;font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:.66rem}.game-node-copy strong{color:var(--navy);font-size:1rem;margin:2px 0}.game-node-copy span{color:var(--muted);font-size:.82rem;line-height:1.3}
+.game-node-meta{position:relative;z-index:2;text-align:right}.game-stars{white-space:nowrap;letter-spacing:1px;font-size:.88rem;color:#cbd5de}.game-stars .earned{color:var(--game-gold);text-shadow:0 1px 0 #cf8b12}.game-node-status{display:block;font-size:.7rem;font-weight:900;color:#718397;margin-top:3px}.complete .game-node-status{color:var(--success)}.current .game-node-status{color:#2d75b4}
+
+.game-collection{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.collection-item{min-height:92px;border:1px dashed #ccd9e4;border-radius:16px;padding:11px;background:#f7fafc;display:flex;gap:10px;align-items:flex-start;opacity:.64}.collection-item.unlocked{opacity:1;background:#fff;border-style:solid;border-color:#d8e7f2;box-shadow:0 6px 14px rgba(22,54,95,.05)}.collection-item-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:0 0 auto;background:#e9eff4;font-size:1.1rem}.collection-item.unlocked .collection-item-icon{background:var(--game-gold-soft)}.collection-item strong,.collection-item small{display:block}.collection-item strong{font-size:.82rem;color:var(--navy)}.collection-item small{font-size:.7rem;line-height:1.25;color:var(--muted);margin-top:3px}.collection-lock{font-size:.76rem!important;font-weight:900;color:#9aa8b4!important}
+
+.game-mission-hud{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;background:linear-gradient(135deg,#fff,#f6fbff);border:1px solid #d9e8f4;border-radius:20px;padding:14px 16px;margin:-8px 0 18px;box-shadow:0 8px 22px rgba(22,54,95,.05)}
+.mission-hud-title{display:flex;align-items:flex-start;gap:11px}.mission-hud-icon{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:var(--blue-soft);font-size:1.35rem;flex:0 0 auto}.mission-hud-title small,.mission-hud-title strong,.mission-hud-title span{display:block}.mission-hud-title small{font-size:.68rem;color:#5282aa;text-transform:uppercase;letter-spacing:.1em;font-weight:900}.mission-hud-title strong{color:var(--navy);font-size:1.03rem}.mission-hud-title span{color:var(--muted);font-size:.82rem;line-height:1.3;margin-top:2px}.mission-hud-meta{text-align:right;min-width:112px}.mission-hud-meta .game-stars{display:block;font-size:1rem}.mission-hud-progress{height:6px;background:#e9eff5;border-radius:999px;overflow:hidden;margin-top:7px}.mission-hud-progress span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--blue),var(--green));transition:width .35s ease}.mission-hud-percent{font-size:.68rem;color:var(--muted);font-weight:900}
+
+.task-card{position:relative;overflow:hidden}.task-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--blue),var(--green));opacity:.55}.task-badge{box-shadow:0 4px 10px rgba(22,54,95,.06)}
+.completion-card.game-cleared{border-color:#cce8d9;background:linear-gradient(145deg,#fff,#effaf5)}
+
+.game-discovery-overlay{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:18px;background:rgba(10,27,45,.45);backdrop-filter:blur(8px)}
+.game-discovery-card{position:relative;width:min(430px,100%);background:#fff;border-radius:30px;padding:30px 24px;text-align:center;box-shadow:0 28px 70px rgba(10,27,45,.28);border:1px solid rgba(255,255,255,.8);overflow:hidden;animation:discoveryIn .38s cubic-bezier(.2,.9,.2,1)}
+.game-discovery-card::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,216,112,.28),rgba(255,216,112,0));left:50%;top:-145px;transform:translateX(-50%);pointer-events:none}.discovery-burst{position:absolute;right:22px;top:16px;color:#f3b82c;font-size:1.5rem;animation:floatBurst 1.8s ease-in-out infinite}.discovery-icon{width:86px;height:86px;margin:8px auto 14px;border-radius:28px;display:grid;place-items:center;font-size:2.75rem;background:linear-gradient(145deg,#fff6ce,#eaf6ff);box-shadow:0 12px 24px rgba(22,54,95,.1);animation:discoveryPulse 1.6s ease-in-out infinite}.game-discovery-card h2{margin:0;color:var(--navy);font-size:1.7rem}.game-discovery-card p{color:var(--muted);margin:8px auto 20px;max-width:340px}
+
+.game-collection-shortcut{min-width:58px;height:42px;padding:0 9px;border-radius:13px;border:1px solid #ead79f;background:#fff9df;color:#7e5a0e;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:5px}.game-collection-shortcut:hover{transform:scale(1.03)}
+
+@keyframes missionPulse{0%,100%{box-shadow:0 0 0 4px rgba(94,168,255,.1)}50%{box-shadow:0 0 0 9px rgba(94,168,255,.04)}}
+@keyframes discoveryIn{from{transform:translateY(18px) scale(.94);opacity:0}to{transform:none;opacity:1}}
+@keyframes discoveryPulse{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.06) rotate(2deg)}}
+@keyframes floatBurst{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-7px) rotate(10deg)}}
+
+@media(max-width:900px){.game-command-center{grid-template-columns:1fr}.game-guide-card,.game-map-card,.game-collection-card{grid-column:1;grid-row:auto}.game-collection{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){
+  .game-command-center{gap:11px;margin-top:2px}.game-guide-card,.game-map-card,.game-collection-card{border-radius:18px}.game-guide-card{padding:14px}.game-guide-avatar{width:58px;height:58px;border-radius:18px;font-size:1.75rem}.game-guide-card p{font-size:.86rem}
+  .game-map-card,.game-collection-card{padding:15px}.game-map-legend{display:none}.game-map{gap:8px}.game-map::before{left:25px}.game-map-node{grid-template-columns:52px 1fr auto;min-height:75px;padding-right:10px;border-radius:17px;gap:9px}.game-node-icon{width:50px;height:50px;border-radius:16px;font-size:1.45rem}.game-node-copy strong{font-size:.92rem}.game-node-copy span{font-size:.75rem}.game-node-copy small{font-size:.59rem}.game-node-meta{min-width:55px}.game-stars{font-size:.72rem}.game-node-status{font-size:.61rem}
+  .game-collection{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.collection-item{min-height:84px;padding:9px}.collection-item-icon{width:34px;height:34px}.collection-item strong{font-size:.76rem}.collection-item small{font-size:.65rem}
+  .game-mission-hud{grid-template-columns:1fr;padding:12px;margin:-3px 0 12px;border-radius:17px}.mission-hud-meta{text-align:left;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px}.mission-hud-meta .game-stars{font-size:.88rem}.mission-hud-progress{margin:0}.mission-hud-percent{white-space:nowrap}
+  .game-discovery-overlay{align-items:end;padding:0}.game-discovery-card{width:100%;border-radius:28px 28px 0 0;padding:26px 18px max(24px,env(safe-area-inset-bottom,24px))}.discovery-icon{width:74px;height:74px;font-size:2.35rem}.game-discovery-card h2{font-size:1.45rem}
+  .game-collection-shortcut{min-width:48px;width:48px;padding:0}.game-collection-shortcut .shortcut-label{display:none}
+}
+@media(max-width:390px){.game-collection{grid-template-columns:1fr}.game-map-node{grid-template-columns:48px 1fr auto}.game-node-icon{width:46px;height:46px}.game-node-copy span{display:none}.game-guide-card{align-items:flex-start}}
+@media(prefers-reduced-motion:reduce){.game-map-node.current .game-node-icon,.discovery-burst,.discovery-icon,.game-discovery-card{animation:none!important}}
